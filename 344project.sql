@@ -30,29 +30,31 @@ values
 (3, withdraw, 899.87), 
 (3, deposit,350.00);
 
+delimiter//
 create procedure accountTransactions(in accountID int)
 begin
 select * from Transactions
 where accountID=accountID
 end;
+delimiter ;
 
-
+delimiter // 
 create procedure deposit(in accountID int,in amount int )
 begin
 insert into Transactions(accountID,transacionType, transcationAmount)
 values (accountID, "deposit", amount);
-
 update accounts set balance= balance +amount where accountId= accountID;
 end;
+delimiter ; 
 
+delimiter //
 create procedure withdraw(in accountID int, in amount int)
 begin
 insert into Transactions (accountId,transactionType,transactionAmount)
 values(acountID,"withdraw",amount);
 update acounts set balance= balance-amount where accountId=accountID;
 end;
-
-
+delimiter ; 
 
 
 
